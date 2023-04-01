@@ -1,0 +1,7 @@
+<div  class="alert alert-info col-lg-6 m-auto my-3">
+  les deux dates  : gregorian {{prayerDates.gregorian}}, Hijri {{prayerDates.hijri}}
+</div>
+
+<div *ngFor="let i of prayerTimes | keyvalue" class="alert alert-success col-lg-6 m-auto my-3">
+  {{i.key}} : {{i.value}} , <span *ngIf="(i.value | remaingTime)>0">time remaining : {{i.value | remaingTime}}</span>
+</div>

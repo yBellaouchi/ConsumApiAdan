@@ -1,0 +1,37 @@
+<form class="col-lg-6 m-auto my-3" [formGroup]="form" (submit)="onSubmit()" novalidate>
+            <div class="input-group mb-3" >
+              <input
+                type="number"
+                class="form-control"
+                formControlName="pu"
+                placeholder="PU"
+                aria-label="Amount (to the nearest dollar)" 
+                />
+              <span class="input-group-text">$</span>
+            </div>
+            <div class="alert alert-danger" 
+                 *ngIf=" form.controls['pu'].value<0 && (form.controls['pu'].touched || form.controls['pu'].dirty)"
+            >
+              <span >pu ne doit pas etre vide ,doit contenir que des chiffres et etre positif</span>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="qte"
+                placeholder="QTE"
+                aria-label="QTE" 
+                />
+            </div>
+         <div class="alert alert-danger" 
+                 *ngIf="form.controls['qte'].value<0  && (form.controls['qte'].touched || form.controls['qte'].dirty)"
+            >
+              qte ne doit pas etre vide , doit contenir que des chiffres,et etre positif
+            </div>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-warning">Save changes</button>
+        </form>
+
+   <div  *ngIf="showResults" class="alert alert-info col-lg-6 m-auto my-3">
+     ht : <span [appBold]="15">{{ht |deleteDigitsPipe |concurrency}}</span> , tva : <span [appItalic]="20" >{{tva |deleteDigitsPipe |concurrency}}</span> , ttc : <span [appItalic]="20">{{ttc |deleteDigitsPipe|concurrency}}</span>
+   </div>
+   
